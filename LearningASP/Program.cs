@@ -1,7 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+using LearningASP.Data;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddEnvironmentVariables();
+
+builder.Configuration.AddJsonFile("appsettings.json");
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<LearningASPContext>(
+    options => options.UseNpgsql(
+        builder.Configuration.GetConnectionString("PostgresDatabase")
+    )
+);
 
 var app = builder.Build();
 

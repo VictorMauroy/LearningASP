@@ -13,7 +13,7 @@ namespace LearningASP.Models
         [DataType(DataType.Date)]
         public DateTime? CreatedDate { get; set; } = default;
         
-        public string? Author { get; set; }
+        public string? AuthorName { get; set; }
         
     }
 }
